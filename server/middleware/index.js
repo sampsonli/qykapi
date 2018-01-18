@@ -11,5 +11,16 @@ export default function middleware() {
         helmet(), // reset HTTP headers (e.g. remove x-powered-by)
         convert(cors()),
         convert(bodyParser()),
+        async (ctx, next) => {
+            try {
+                await next()
+            } catch (e) {
+                ctx.body = {
+                    code: e.code || 500,
+                    msg: e.message,
+                    data: {}
+                }
+            }
+        }
     ]);
 }
