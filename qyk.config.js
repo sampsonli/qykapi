@@ -4,7 +4,7 @@
 module.exports = {
     apps: [
         {
-            name: 'score',
+            name: 'qykapi',
             script: './bin/www.js',
             kill_timeout: 3000,
             env: {
