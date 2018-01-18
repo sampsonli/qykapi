@@ -7,7 +7,7 @@ import middleware from './middleware';
 import routes from './routes';
 
 import {connectDatabase} from './db'
-connectDatabase('mongodb://localhost/xyjzfetch-test')
+connectDatabase('mongodb://localhost/xyjzfetch')
 
 const app = new Koa();
 app.use(middleware());
