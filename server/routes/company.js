@@ -14,7 +14,7 @@ router.all('/query_by_name',async (ctx) => {
         code: 100,
         msg: 'ok',
         data: {
-            list: await company.find({name: eval(`/${name}/`)}, {name: 1}).skip(pn * ps).limit(ps)
+            list: await company.find({name: eval(`/${name}/`)}, {name: 1, qyfddbrzs: 1, yyzz: 1}).skip(pn * ps).limit(ps)
         }
     }
 
@@ -30,7 +30,7 @@ router.all('/query_by_zizhi',async (ctx) => {
         code: 100,
         msg: 'ok',
         data: {
-            list: await company.find({$and: [{'zizhi.name': zizhi1}, {'zizhi.name': zizhi2}]}, {name: 1}).skip(pn*ps).limit(ps)
+            list: await company.find({$and: [{'zizhi.name': zizhi1}, {'zizhi.name': zizhi2}]}, {name: 1, qyfddbrzs: 1, yyzz: 1}).skip(pn*ps).limit(ps)
         }
     }
 
