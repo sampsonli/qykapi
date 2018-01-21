@@ -40,13 +40,21 @@ router.all('/query_by_zizhi',async (ctx) => {
 
 router.all('/query_by_cid',async (ctx) => {
     let cid = ctx.query.cid || ctx.request.body.cid
-    ctx.body = {
-        code: 100,
-        msg: 'ok',
-        data: {
-            list: await company.find({_id: cid}, {name: 1})
+    let res = await company.find({_id: cid}, {name: 1})
+    if(res && res.length) {
+        ctx.body = {
+            code: 100,
+            msg: 'ok',
+            data: res[0]
+        }
+    }else {
+        ctx.body = {
+            code: 200,
+            msg: 'no result',
+            data: {}
         }
     }
+
 
 
 
