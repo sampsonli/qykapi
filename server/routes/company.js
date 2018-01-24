@@ -10,12 +10,11 @@ router.all('/query_by_name',async (ctx) => {
     let name = ctx.query.name || ctx.request.body.name
     let pn = parseInt(ctx.query.pn || ctx.request.body.pn) || 0
     let ps = parseInt(ctx.query.ps || ctx.request.body.ps) || 20
-    let list = await company.find({name: eval(`/${name}/`)}, {name: 1, qyfddbrzs: 1, yyzz: 1}).skip(pn * ps).limit(ps)
-    if(list) {
-        list.forEach(item => {
-            item.qyfddbrzs.phoneNo = ''
-        })
-    }
+    let list = await company.find({name: name?eval(`/${name}/`): /.*/}, {name: 1, qyfddbrzs: 1, yyzz: 1}).skip(pn * ps).limit(ps)
+
+    list.forEach(item => {
+        item.qyfddbrzs.phoneNo = ''
+    })
     ctx.body = ctx.body = {
         code: 100,
         msg: 'ok',
