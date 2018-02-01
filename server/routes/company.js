@@ -76,4 +76,22 @@ router.all('/query_by_cid',async (ctx) => {
 
 })
 
+router.all('/all_zizhi',async (ctx) => {
+
+    let list = await company.distinct('zizhi.name')
+
+
+    ctx.body = {
+        code: 100,
+        msg: 'ok',
+        data: {
+            list
+        }
+    }
+
+
+
+})
+
+
 export default router
